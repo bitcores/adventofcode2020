@@ -23,7 +23,7 @@ for x in comblist:
 comblist = list(combinations(inp,3))
 for x in comblist:
     if x[0] + x[1] + x[2] == 2020:
-        print("Part 1 result:> ", x[0] * x[1] * x[2])
+        print("Part 2 result:> ", x[0] * x[1] * x[2])
         break
 
 
