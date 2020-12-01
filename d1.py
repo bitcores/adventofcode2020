@@ -5,7 +5,7 @@ st = time.time()
 inp = []
 
 ## Parse input
-with open("input1.txt") as fp:
+with open("input1t.txt") as fp:
     for line in fp:
         line = line.strip()
 
@@ -18,7 +18,7 @@ for x in range(0, len(inp)):
     for y in range(x+1, len(inp)):
         if inp[x] + inp[y] == 2020:
             found = True
-            print("Part 1 result:> ", inp[x] * inp[y])
+            print("Part 1 result:> ", inp[x] * inp[y] , "("+str(inp[x])+"*"+str(inp[y])+")")
             break
     if found:
         break
@@ -29,7 +29,7 @@ for x in range(0, len(inp)):
         for z in range(y+1, len(inp)):
             if inp[x] + inp[y] + inp[z] == 2020:
                 found = True
-                print("Part 2 result:> ", inp[x] * inp[y] * inp[z])
+                print("Part 2 result:> ", inp[x] * inp[y] * inp[z] , "("+str(inp[x])+"*"+str(inp[y])+"*"+str(inp[z])+")")
                 break
         if found:
             break
