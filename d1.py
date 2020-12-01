@@ -1,5 +1,6 @@
 import time
 from copy import deepcopy
+from itertools import combinations
 
 st = time.time()
 
@@ -13,35 +14,16 @@ with open("input1.txt") as fp:
         inp.append(int(line))
 
 ## Solve problem
-finp = sorted(inp)
-rinp = sorted(inp, reverse=True)
-found = False
-for x in finp:
-    for y in rinp:
-        if finp.count(x) == 1 and x == y:
-            continue
-
-        if x + y == 2020:
-            found = True
-            print("Part 1 result:> ", x * y)
-            break
-    if found:
+comblist = list(combinations(inp,2))
+for x in comblist:
+    if x[0] + x[1] == 2020:
+        print("Part 1 result:> ", x[0] * x[1])
         break
 
-found = False
-for x in finp:
-    for y in rinp:
-        for z in finp:
-            if finp.count(x) == 1 and (x == y or x == z):
-                continue
-
-            if x + y + z == 2020:
-                found = True
-                print("Part 2 result:> ", x * y * z)
-                break
-        if found:
-            break
-    if found:
+comblist = list(combinations(inp,3))
+for x in comblist:
+    if x[0] + x[1] + x[2] == 2020:
+        print("Part 1 result:> ", x[0] * x[1] * x[2])
         break
 
 
