@@ -5,7 +5,7 @@ st = time.time()
 inp = []
 
 ## Parse input
-with open("input1t.txt") as fp:
+with open("input1.txt") as fp:
     for line in fp:
         line = line.strip()
 
