@@ -14,7 +14,7 @@ with open("input1.txt") as fp:
 ## Solve problem
 found = False
 for x in range(0, len(inp)):
-    for y in range(x, len(inp)):
+    for y in range(x+1, len(inp)):
         if inp[x] + inp[y] == 2020:
             found = True
             print("Part 1 result:> ", inp[x] * inp[y])
@@ -24,8 +24,8 @@ for x in range(0, len(inp)):
 
 found = False
 for x in range(0, len(inp)):
-    for y in range(x, len(inp)):
-        for z in range(y, len(inp)):
+    for y in range(x+1, len(inp)):
+        for z in range(y+1, len(inp)):
             if inp[x] + inp[y] + inp[z] == 2020:
                 found = True
                 print("Part 2 result:> ", inp[x] * inp[y] * inp[z])
