@@ -12,6 +12,7 @@ with open("input1.txt") as fp:
         inp.append(int(line))
 
 ## Solve problem
+inp.sort()
 found = False
 for x in range(0, len(inp)):
     for y in range(x+1, len(inp)):
