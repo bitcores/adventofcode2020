@@ -32,7 +32,7 @@ print("Part 2 total valid:> ", part2)
 ## Print runtime
 et = time.time()
 if (et - st) < 1:
-    rt = str(round((et - st) * 100,3)) + "ms"
+    rt = str(round((et - st) * 1000,3)) + "ms"
 else:
     rt = str(round(et - st,3)) + "s"
 print("Runtime:> ", rt)
