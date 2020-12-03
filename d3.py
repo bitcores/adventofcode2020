@@ -2,25 +2,22 @@ import time
 
 st = time.time()
 
-inp = dict()
+inp = []
 
-y = 0
 ## Parse input
 with open("input3.txt") as fp:
     for line in fp:
         line = line.strip()
-        li = []
-        for x in line:
-            li.append(x)
-        inp[y] = li
-        y += 1
+        
+        inp.append(line)
+
 
 ## Solve problem
 #[y,x]
 def findtrees(move):
     pos = [0,0]
     ts = 0
-    while pos[0] < y:
+    while pos[0] < len(inp):
         if inp[pos[0]][pos[1]] == "#":
             ts += 1
         pos[1] = (pos[1]+move[1]) % len(inp[pos[0]])
