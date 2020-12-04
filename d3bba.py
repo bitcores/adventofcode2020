@@ -1,7 +1,6 @@
 import time
 from mpi4py import MPI
 import numpy as np
-from itertools import combinations
 
 comm = MPI.COMM_WORLD
 rank = comm.rank
