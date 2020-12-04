@@ -31,8 +31,8 @@ movelist = [[1,3], [1,1], [1,5], [1,7], [2,1]]
 p1 = findtrees(movelist[0])
 for m in movelist: p2 *= findtrees(m)
 
-print("Trees encountered part 1:> ", p1)
-print("Trees encountered part 2:> ", p2)
+print("Trees encountered:> ", p1)
+print("Product of trees encountered:> ", p2)
 
 ## Print runtime
 et = time.time()
