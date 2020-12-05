@@ -25,16 +25,9 @@ for x in inp:
 
 allseats.sort()
 topval = allseats[-1]
-
 print("Highest boarding pass seat ID:> ", topval)
 
-myseat = 0
-
-for x in range(allseats[0],allseats[-1]):
-    if not x in allseats and (x-1 in allseats and x+1 in allseats):
-        myseat = x
-        break
-
+myseat = sorted(set(range(allseats[0], allseats[-1]+1)).difference(allseats))[0]
 print("My seat ID:> ", myseat)
 
 ## Print runtime
