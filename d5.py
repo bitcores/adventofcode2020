@@ -13,19 +13,12 @@ with open("input5.txt") as fp:
         inp.append(line)
 
 ## Solve problem
-def strbin(bstr):
-    bout = 0
-    for p in bstr:
-        bout = bout << 1
-        bout += int(p)
-    return bout
-
 allseats = []
 for x in inp:
     seat = [0,0]
     b = x.translate(str.maketrans("FLBR", "0011"))
-    seat[0] = strbin(b[:7])
-    seat[1] = strbin(b[7:])
+    seat[0] = int(b[:7], 2)
+    seat[1] = int(b[7:], 2)
 
     seatid = seat[0] * 8 + seat[1]
     allseats.append(seatid)
