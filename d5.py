@@ -1,5 +1,4 @@
 import time
-from math import ceil
 
 st = time.time()
 
@@ -14,52 +13,36 @@ with open("input5.txt") as fp:
         inp.append(line)
 
 ## Solve problem
-allseats = {}
-r = 128
+def strbin(bstr):
+    bout = 0
+    for p in bstr:
+        bout = bout << 1
+        bout += int(p)
+    return bout
+
+allseats = []
 for x in inp:
     seat = [0,0]
-    row = [127,0]
-    isle = [7,0]
-    for y in range(0,7):
-        if x[y] == "F":
-            row[0] -= ceil((row[0] - row[1]) / 2)
-        if x[y] == "B":
-            row[1] += ceil((row[0] - row[1]) / 2)
-    if x[6] == "F":
-        seat[0] = row[0]
-    else:
-        seat[0] = row[1]
+    b = x.translate(str.maketrans("FLBR", "0011"))
+    seat[0] = strbin(b[:7])
+    seat[1] = strbin(b[7:])
 
-    for y in range(7,9):
-        if x[y] == "L":
-            isle[0] -= ceil((isle[0] - isle[1]) / 2)
-        if x[y] == "R":
-            isle[1] += ceil((isle[0] - isle[1]) / 2)
+    seatid = seat[0] * 8 + seat[1]
+    allseats.append(seatid)
 
-    if x[9] == "R":
-        seat[1] = isle[0]
-    else:
-        seat[1] = isle[1]
-    allseats[x] = seat
-    #print(seat)
+allseats.sort()
+topval = allseats[-1]
 
-toppass = ""
-topval = 0
-idlist = []
-for o in allseats:
-    seatval = allseats[o][0] * 8 + allseats[o][1]
-    idlist.append(seatval)
-    if seatval > topval:
-        topval = seatval
-        toppass = o
+print("Highest boarding pass seat ID:> ", topval)
 
-print(toppass, topval)
+myseat = 0
 
-idlist.sort()
-for x in range(idlist[0],idlist[-1]):
-    if not x in idlist:
-        if x-1 in idlist and x+1 in idlist:
-            print(x)
+for x in range(allseats[0],allseats[-1]):
+    if not x in allseats and (x-1 in allseats and x+1 in allseats):
+        myseat = x
+        break
+
+print("My seat ID:> ", myseat)
 
 ## Print runtime
 et = time.time()
