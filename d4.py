@@ -22,7 +22,7 @@ with open("input4.txt") as fp:
 
 ## Solve problem
 def checkfields(psp):
-    for f in ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]:
+    for f in ["byr:", "iyr:", "eyr:", "hgt:", "hcl:", "ecl:", "pid:"]:
         if not f in psp:
             return False
     return True
