@@ -15,13 +15,8 @@ with open("input5.txt") as fp:
 ## Solve problem
 allseats = []
 for x in inp:
-    seat = [0,0]
     b = x.translate(str.maketrans("FLBR", "0011"))
-    seat[0] = int(b[:7], 2)
-    seat[1] = int(b[7:], 2)
-
-    seatid = seat[0] * 8 + seat[1]
-    allseats.append(seatid)
+    allseats.append(int(b, 2))
 
 allseats.sort()
 topval = allseats[-1]
