@@ -1,47 +1,42 @@
 import time
-
 st = time.time()
 
-inp = []
-inp2 = []
+inputfile = "input6.txt"
+
+def readinput():
+    return open(inputfile).read().split("\n")
+
+def splitinput():
+    L = open(inputfile).read().split("\n\n")
+    for x in range(0, len(L)):
+        L[x] = L[x].split("\n")
+    return L
 
 ## Parse input
-group = []
-groupset = set()
-with open("input6.txt") as fp:
-    for line in fp:
-        line = line.strip()
-        
-        if line == "":
-            inp.append(group)
-            inp2.append(groupset)
-            group = []
-            groupset = set()
-        else:
-            group.append(line)
-            for x in line:
-                groupset.add(x)
-    if group[0] != "":
-        inp.append(group)
-        inp2.append(groupset)
+#inp = readinput()
+inp = splitinput()
 
 ## Solve problem
 total = 0
-for y in inp2:
-    total += len(y)
+for group in inp:
+    gset = set()
+    for person in group:
+        for x in person:
+            gset.add(x)
+    total += len(gset)
 
 total2 = 0
-for y in inp:
-    for c in y[0]:
-        ct = 0
-        for z in y:
-            if c in z:
-                ct += 1
-        if ct == len(y):
+for group in inp:
+    for q in group[0]:
+        qt = 0
+        for person in group:
+            if q in person:
+                qt += 1
+        if qt == len(group):
             total2 += 1
 
-print(total)
-print(total2)
+print("Sum of questions anyone answered Yes:> ", total)
+print("Sum of questions entire groups answered Yes:> ", total2)
 
 
 ## Print runtime
