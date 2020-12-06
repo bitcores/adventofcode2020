@@ -1,8 +1,8 @@
 import time
-from functools import reduce
+
 st = time.time()
 
-inputfile = "input6t.txt"
+inputfile = "input6.txt"
 
 def readinput():
     L = open(inputfile).read().split("\n")
