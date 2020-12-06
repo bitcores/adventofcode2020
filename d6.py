@@ -22,13 +22,8 @@ inp = splitinput()
 total = 0
 total2 = 0
 for group in inp:
-    for p in range(0, len(group)):
-        pset = set()
-        for x in group[p]:
-            pset.add(x)
-        group[p] = pset
-    total += len(set.union(*group))
-    total2 += len(set.intersection(*group))
+    total += len(set.union(*[set(person) for person in group]))
+    total2 += len(set.intersection(*[set(person) for person in group]))
 
 print("Sum of questions anyone answered Yes:> ", total)
 print("Sum of questions entire groups answered Yes:> ", total2)
