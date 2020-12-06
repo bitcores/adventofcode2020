@@ -1,7 +1,8 @@
 import time
+from functools import reduce
 st = time.time()
 
-inputfile = "input6.txt"
+inputfile = "input6t.txt"
 
 def readinput():
     L = open(inputfile).read().split("\n")
@@ -17,24 +18,17 @@ def splitinput():
 #inp = readinput()
 inp = splitinput()
 
-## Solve problem
+## Solve problem    
 total = 0
-for group in inp:
-    gset = set()
-    for person in group:
-        for x in person:
-            gset.add(x)
-    total += len(gset)
-
 total2 = 0
 for group in inp:
-    for q in group[0]:
-        qt = 0
-        for person in group:
-            if q in person:
-                qt += 1
-        if qt == len(group):
-            total2 += 1
+    for p in range(0, len(group)):
+        pset = set()
+        for x in group[p]:
+            pset.add(x)
+        group[p] = pset
+    total += len(set.union(*group))
+    total2 += len(set.intersection(*group))
 
 print("Sum of questions anyone answered Yes:> ", total)
 print("Sum of questions entire groups answered Yes:> ", total2)
