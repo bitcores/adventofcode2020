@@ -4,12 +4,13 @@ st = time.time()
 inputfile = "input6.txt"
 
 def readinput():
-    return open(inputfile).read().split("\n")
+    L = open(inputfile).read().split("\n")
+
+    return L
 
 def splitinput():
-    L = open(inputfile).read().split("\n\n")
-    for x in range(0, len(L)):
-        L[x] = L[x].split("\n")
+    L = [i.split("\n") for i in open(inputfile).read().split("\n\n")]
+
     return L
 
 ## Parse input
