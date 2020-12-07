@@ -49,10 +49,10 @@ inp = readinput()
 ## Solve problem
 #print(inp)
 searchbags(goal)
-print(len(cancontain))
+print("No. of bags that can contain a shiny gold bag:> ", len(cancontain))
 
 countbags(goal, 1)
-print(totalbags)
+print("Total no. of bags that can be contained within a shiny gold bag:> ", totalbags)
 
 ## Print runtime
 et = time.time()
