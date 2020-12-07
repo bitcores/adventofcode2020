@@ -26,36 +26,10 @@ def splitinput():
 
 cancontain = set()
 def searchbags(key):
-    gk = []
-    gk = deepcopy(key)
-    global cancontain
-
-    if goal in inp[key[-1]].keys():
-        cancontain.add(key[0])
-        return
-    else:
-        for z in inp[key[-1]].keys():
-            gk.append(z)
-            searchbags(gk)
-
-## Parse input
-goal = "shiny gold"
-inp = readinput()
-#inp = splitinput()
-
-## Solve problem
-#print(inp)
-
-for x in inp:
-    searchbags([x])
-
-plist = []
-for z in cancontain:
-    if z in inp.keys():
-        plist.append(z)
-
-#print(plist)
-print(len(plist))
+    for b in inp:     
+        if key in inp[b].keys():
+            cancontain.add(b)
+            searchbags(b)
 
 totalbags = 0
 def countbags(key, no):
@@ -67,9 +41,17 @@ def countbags(key, no):
             countbags(z, int(x)*int(no))
     totalbags += keytot * int(no)
 
+## Parse input
+goal = "shiny gold"
+inp = readinput()
+#inp = splitinput()
+
+## Solve problem
+#print(inp)
+searchbags(goal)
+print(len(cancontain))
 
 countbags(goal, 1)
-
 print(totalbags)
 
 ## Print runtime
