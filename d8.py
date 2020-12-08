@@ -58,12 +58,9 @@ inp = readinput()
 
 ## Solve problem
 part1 = comp(0, [], 0, 0, False)
-print(part1)
+print("Value at loop exception:> ", part1)
 part2 = comp(0, [], 0, 0, True)
-print(part2)
-
-
-
+print("Value at safe exit:> ", part2)
 
 ## Print runtime
 et = time.time()
