@@ -44,7 +44,7 @@ for o in range(preamb, len(inp)):
         break
 
 
-print(missing)
+print("Invalid number in list:> ", missing)
 contiglist = []
 xfound = False
 
@@ -62,10 +62,7 @@ for x in range(len(inp)-1, 0, -1):
             break
         contiglist.clear()
 
-contiglist.sort()
-print(contiglist[0] + contiglist[-1])
-
-
+print("Part 2 lol:> ", min(contiglist) + max(contiglist))
 
 ## Print runtime
 et = time.time()
