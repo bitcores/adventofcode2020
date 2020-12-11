@@ -69,6 +69,25 @@ for x in inp:
 print("Product of 1-jolt and 3-jolt diffs:> ", difs[0] * difs[1])
 print("No. of distict arrangements of adapters:> ", dp[max(inp)])
 
+##
+# This problem is basically like rolling a bunch of dice, how many possible
+# configurations the dice can land in. If you take three six-sided dice for an
+# example, they have 6x6x6 number of possible configurations.
+# Each contiguous list in the input (from 0 to max) defines a die of n sides
+# The number of sides each die has is determined by the length of the contiguous
+# list and the size of the allowed gap (1-3 in this case), representing the number
+# of configurations that list is allowed to have. Starting from a list of 1 length:
+# 1  n=1
+# 2  n=1
+# 3  n=2
+# 4  n=4
+# 5  n=7
+# There are no lists longer than 5 in the input provided, but if the example
+# lengths continued, the number of configurations would increase by the sum of the
+# previous three configurations (2 = 0,0,1, 3 = 0,1,1, 4 = 1,1,2, 5=1,2,4, etc)
+# If the allowed distance were 1-2, this would change to the previous TWO 
+# configurations. If 1-5, FIVE configurations. 
+##
 contigsets = []
 contig = [0]
 for y in range(0, len(inp)):
