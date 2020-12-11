@@ -31,7 +31,7 @@ inp = readinput()
 
 ## Solve problem
 #print(inp)
-part2 = True
+part2 = False
 seats = deepcopy(inp)
 def cntadjseats(pos):
     #adj seats are 
@@ -91,7 +91,7 @@ while not stable:
 occsum = 0
 for cy in seats:
     occsum += sum(value == "#" for value in seats[cy].values())
-print(occsum)
+print("Occupied seats at equalibrium:> ", occsum)
 
 ## Print runtime
 et = time.time()
