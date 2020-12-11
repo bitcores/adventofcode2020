@@ -1,4 +1,5 @@
 import time
+from copy import deepcopy
 from collections import defaultdict
 st = time.time()
 
@@ -68,6 +69,26 @@ for x in inp:
 print("Product of 1-jolt and 3-jolt diffs:> ", difs[0] * difs[1])
 print("No. of distict arrangements of adapters:> ", dp[max(inp)])
 
+contigsets = []
+contig = [0]
+for y in range(0, len(inp)):
+    if inp[y] - contig[-1] == 1:
+        contig.append(inp[y])
+    else:
+        if len(contig) >= 3:
+            contigsets.append(deepcopy(contig))
+        contig.clear()
+        contig.append(inp[y])
+
+pathdict = {3:2, 4:4, 5:7}
+tot = 1
+for e in contigsets:
+    if len(e) not in pathdict:
+        print("Anomolous Behavior")
+        break
+    tot *= pathdict[len(e)]
+
+print("Part 2 original solution:>" , tot)
 
 ## Print runtime
 et = time.time()
