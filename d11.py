@@ -31,32 +31,29 @@ inp = readinput()
 
 ## Solve problem
 #print(inp)
-part2 = False
-seats = deepcopy(inp)
-def cntadjseats(pos):
-    #adj seats are 
-    #-1,-1 -1,0 -1,+1
-    #0,-1 0,+1
-    #+1,-1 +1,0 +1,+1
+def boundscheck(seats, cpos):
+    return cpos[0] not in seats or cpos[1] not in seats[cpos[0]]
+
+def cntadjseats(seats, pos, part2):
     ocp = 0
+    d = [[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]]   
     if not part2:
-        for y in range(pos[0]-1, pos[0]+2):
-            for x in range(pos[1]-1, pos[1]+2):
-                if y == pos[0] and x == pos[1]:
-                    continue
-                if y not in seats or x not in seats[y]:
-                    continue
-                if seats[y][x] == "#":
-                    ocp += 1
-    else:
-        d = [[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]]      
+        for dd in d:
+            y = pos[0] + dd[0]
+            x = pos[1] + dd[1]
+
+            if boundscheck(seats, [y,x]):
+                continue
+            if seats[y][x] == "#":
+                ocp += 1
+    else:           
         for dd in d:
             dpos = deepcopy(pos)
             while True:
                 dpos[0] += dd[0]
                 dpos[1] += dd[1]
 
-                if dpos[0] not in seats or dpos[1] not in seats[dpos[0]]:
+                if boundscheck(seats, dpos):
                     break
                 if seats[dpos[0]][dpos[1]] == "L":
                     break
@@ -66,32 +63,41 @@ def cntadjseats(pos):
 
     return ocp
 
-stable = False
-while not stable:
-    changes = 0
-    seatcopy = deepcopy(seats)
-    for dy in seats:
-        for dx in seats[dy]:
-            if seats[dy][dx] == "L":
-                if cntadjseats([dy,dx]) == 0:
-                    changes += 1
-                    seatcopy[dy][dx] = "#"
-            elif seats[dy][dx] == "#":
-                if (cntadjseats([dy,dx]) >= 4 and not part2) or (cntadjseats([dy,dx]) >= 5 and part2):
-                    changes += 1
-                    seatcopy[dy][dx] = "L"
-    
-    if changes == 0:
-        stable = True
-    else:
-        seats = deepcopy(seatcopy)
-        #print(seats)
-        #input()
+def fillchairs(seats, part2):
+    stable = False
+    while not stable:
+        seatcng = {}
+        for dy in seats:
+            for dx in seats[dy]:
+                if seats[dy][dx] == "L":
+                    if cntadjseats(seats, [dy,dx], part2) == 0:
+                        if dy not in seatcng:
+                            seatcng[dy] = {}
+                        seatcng[dy][dx] = "#"
+                elif seats[dy][dx] == "#":
+                    if (cntadjseats(seats, [dy,dx], part2) >= 4 and not part2) or \
+                        (cntadjseats(seats, [dy,dx], part2) >= 5 and part2):
+                        if dy not in seatcng:
+                            seatcng[dy] = {} 
+                        seatcng[dy][dx] = "L"
+        
+        if len(seatcng) == 0:
+            stable = True
+        else:
+            for uy in seatcng:
+                seats[uy].update(seatcng[uy])
+            #print(seats)
+            #input()
 
-occsum = 0
-for cy in seats:
-    occsum += sum(value == "#" for value in seats[cy].values())
-print("Occupied seats at equalibrium:> ", occsum)
+    occsum = 0
+    for cy in seats:
+        occsum += sum(value == "#" for value in seats[cy].values())
+    return occsum
+
+part1 = fillchairs(deepcopy(inp), False)
+print("Occupied seats at equalibrium:> ", part1)
+part2 = fillchairs(deepcopy(inp), True)
+print("Occupied seats at equalibrium (with rays):> ", part2)
 
 ## Print runtime
 et = time.time()
