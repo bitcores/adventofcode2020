@@ -3,7 +3,7 @@ from copy import deepcopy
 
 st = time.time()
 
-inputfile = "input13t.txt"
+inputfile = "input13.txt"
 
 def readinput():
     L = []
@@ -58,7 +58,7 @@ print(smallest * bid)
 # 
 ##
 
-constraints = inp[2].split(",")
+constraints = inp[1].split(",")
 fac = 0
 mul = 1
 for i in range(0, len(constraints)):
