@@ -25,18 +25,23 @@ inp = readinput()
 ## Solve problem
 def spitnumber(nl, t):
     lpos = {}
+    lnum = []
     nums = nl.split(",")
     for c in range(len(nums)-1):
         lpos[nums[c]] = c
+    lnum.insert(0, "X")
+    lnum.insert(1, nums[-1])
+
     for i in range(len(nums), t):
-        if not nums[-1] in lpos.keys():
-            nums.append("0") 
+        if not lnum[1] in lpos.keys():
+            newnum = "0"
         else:
-            idx = len(nums) - 1 - lpos[nums[-1]]
+            idx = i - 1 - lpos[lnum[1]]
             newnum = str(idx)
-            nums.append(newnum)
-        lpos[nums[-2]] = len(nums)-2
-    return(nums[-1])
+        lnum[0], lnum[1] = lnum[1], newnum
+        lpos[lnum[0]] = i -1
+
+    return(lnum[1])
 
 for x in inp:
     print("Input:> ", x)
