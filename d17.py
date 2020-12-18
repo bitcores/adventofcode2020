@@ -32,6 +32,13 @@ inp = readinput()
 ## Solve problem
 conway = deepcopy(inp)
 
+def expandm(lip, val):
+    if not lip[0] <= val <= lip[1]:
+        if val < lip[0]:
+            lip[0] = val
+        if val > lip[1]:
+            lip[1] = val
+
 def printslices():
     for w in conway:
         for z in conway[w]:
@@ -101,26 +108,10 @@ for _ in range(0,6):
     for rl in updatelist:
         pos = rl[0]
         pw,pz,py,px = pos[0],pos[1],pos[2],pos[3]
-        if not wmm[0] <= pw <= wmm[1]:
-            if pw < wmm[0]:
-                wmm[0] = pw
-            if pw > wmm[1]:
-                wmm[1] = pw
-        if not zmm[0] <= pz <= zmm[1]:
-            if pz < zmm[0]:
-                zmm[0] = pz
-            if pz > zmm[1]:
-                zmm[1] = pz
-        if not ymm[0] <= py <= ymm[1]:
-            if py < ymm[0]:
-                ymm[0] = py
-            if py > ymm[1]:
-                ymm[1] = py 
-        if not xmm[0] <= px <= xmm[1]:
-            if px < xmm[0]:
-                xmm[0] = px
-            if px > xmm[1]:
-                xmm[1] = px  
+        expandm(wmm, pw)
+        expandm(zmm, pz)
+        expandm(ymm, py)
+        expandm(xmm, px)
         conway[pw][pz][py][px] = rl[1]
 
     #printslices()
