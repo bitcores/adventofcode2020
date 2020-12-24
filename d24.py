@@ -96,15 +96,6 @@ for _ in range(100):
                         chkwhte([yys,xxs])
                 if bc == 0 or bc > 2:
                     changes[ys][xs] = "."
-            elif tiles[ys][xs] == ".":
-                for m in md:
-                    yys,xxs = ys+md[m][0],xs+md[m][1]
-                    if yys in tiles:
-                        if xxs in tiles[yys] and tiles[yys][xxs] == "#":
-                            bc += 1
-                if bc == 2:
-                    changes[ys][xs] = "#"
-
     
     for ny in changes:
         for nx in changes[ny]:
